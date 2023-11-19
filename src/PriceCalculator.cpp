@@ -1,49 +1,19 @@
 #include "PriceCalculator.h"
-
+#include <memory>
 #include <cmath>
+#include <unordered_map>
 
 namespace PriceCalc
 {
 double PriceCalculator::AcceptCash(const DiscountType discountType, const double money) const noexcept
 {
-    double cash = 0.0;
+    std::unordered_map <DiscountType, std::unique_ptr<Discount>> discountMap;
 
-    switch (discountType) {
-        case DiscountType::CASH_NORMAL: {
-            // cash = money;
-            cash = Normal(money);
-            break;
-        }
+    discountMap.emplace(DiscountType::CASH_NORMAL, std::make_unique<Normal>());
+    discountMap.emplace(DiscountType::CASH_PERCENTOFF_10, std::make_unique<CASH_PERCENT_OFF>(0.9));
+    discountMap.emplace(DiscountType::CASH_PERCENTOFF_20, std::make_unique<CASH_PERCENT_OFF>(0.8));
+    discountMap.emplace(DiscountType::CASH_PERCENTOFF_30, std::make_unique<CASH_PERCENT_OFF>(0.7));
+    discountMap.emplace(DiscountType::CASH_BACK, std::make_unique<CashBack>());
 
-        case DiscountType::CASH_PERCENTOFF_10: {
-            cash = CASH_PERCENT_OFF_10(money);
-            break;
-        }
-
-        case DiscountType::CASH_PERCENTOFF_20: {
-            const double discountRate = 0.8;
-
-            cash = money * discountRate;
-            break;
-        }
-
-        case DiscountType::CASH_PERCENTOFF_30: {
-            const double discountRate = 0.7;
-
-            cash = money * discountRate;
-            break;
-        }
-
-        case DiscountType::CASH_BACK: {
-            const double threshold = 100.0;
-            const double cashback = 20.0;
-
-            cash = money - std::floor(money / threshold) * cashback;
-
-            break;
-        }
-    }
-
-    return cash;
-}
+    return discountMap.find(discountType)->second->AcceptCash(money);
 }  // namespace PriceCalc
