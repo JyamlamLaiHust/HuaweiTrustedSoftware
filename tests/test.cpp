@@ -25,7 +25,7 @@ TEST(PriceCalculator, should_return_90_when_cash_percent_off_10_and_price_100)
 {
     // given
     // PriceCalculator priceCalculator;
-PriceCalculator* priceCalculator = PriceCalculator::getInstance();
+    PriceCalculator* priceCalculator = PriceCalculator::getInstance();
 
     DiscountType discountType = DiscountType::CASH_PERCENTOFF_10;
     double money = 100.0;
@@ -37,19 +37,21 @@ PriceCalculator* priceCalculator = PriceCalculator::getInstance();
     EXPECT_DOUBLE_EQ(90.0, cash);
 }
 
-// TEST(PriceCalculator, should_return_80_when_cash_percent_off_20_and_price_100)
-// {
-//     // given
-//     // PriceCalculator priceCalculator;
-//     DiscountType discountType = DiscountType::CASH_PERCENTOFF_20;
-//     double money = 100.0;
+TEST(PriceCalculator, should_return_80_when_cash_percent_off_20_and_price_100)
+{
+    // given
+    // PriceCalculator priceCalculator;
+PriceCalculator* priceCalculator = PriceCalculator::getInstance();
 
-//     // when
-//     double cash = priceCalculator.AcceptCash(discountType, money);
+    DiscountType discountType = DiscountType::CASH_PERCENTOFF_20;
+    double money = 100.0;
 
-//     // then
-//     EXPECT_DOUBLE_EQ(80.0, cash);
-// }
+    // when
+    double cash = priceCalculator->AcceptCash(discountType, money);
+
+    // then
+    EXPECT_DOUBLE_EQ(80.0, cash);
+}
 
 // TEST(PriceCalculator, should_return_70_when_cash_percent_off_30_and_price_100)
 // {
