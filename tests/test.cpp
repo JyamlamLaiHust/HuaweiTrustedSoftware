@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "PriceCalculator.h"
+#include "Discount.h"
 
 using namespace PriceCalc;
 
