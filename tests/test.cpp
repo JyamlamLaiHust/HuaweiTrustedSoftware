@@ -53,44 +53,50 @@ PriceCalculator* priceCalculator = PriceCalculator::getInstance();
     EXPECT_DOUBLE_EQ(80.0, cash);
 }
 
-// TEST(PriceCalculator, should_return_70_when_cash_percent_off_30_and_price_100)
-// {
-//     // given
-//     // PriceCalculator priceCalculator;
-//     DiscountType discountType = DiscountType::CASH_PERCENTOFF_30;
-//     double money = 100.0;
+TEST(PriceCalculator, should_return_70_when_cash_percent_off_30_and_price_100)
+{
+    // given
+    // PriceCalculator priceCalculator;
+    PriceCalculator* priceCalculator = PriceCalculator::getInstance();
 
-//     // when
-//     double cash = priceCalculator.AcceptCash(discountType, money);
+    DiscountType discountType = DiscountType::CASH_PERCENTOFF_30;
+    double money = 100.0;
 
-//     // then
-//     EXPECT_DOUBLE_EQ(70.0, cash);
-// }
+    // when
+    double cash = priceCalculator->AcceptCash(discountType, money);
 
-// TEST(PriceCalculator, should_return_90_when_given_cash_back_and_price_90)
-// {
-//     // given
-//     // PriceCalculator priceCalculator;
-//     DiscountType discountType = DiscountType::CASH_BACK;
-//     double money = 90.0;
+    // then
+    EXPECT_DOUBLE_EQ(70.0, cash);
+}
 
-//     // when
-//     double cash = priceCalculator.AcceptCash(discountType, money);
+TEST(PriceCalculator, should_return_90_when_given_cash_back_and_price_90)
+{
+    // given
+    // PriceCalculator priceCalculator;
+    PriceCalculator* priceCalculator = PriceCalculator::getInstance();
 
-//     // then
-//     EXPECT_DOUBLE_EQ(90.0, cash);
-// }
+    DiscountType discountType = DiscountType::CASH_BACK;
+    double money = 90.0;
 
-// TEST(PriceCalculator, should_return_80_when_given_cash_back_and_price_100)
-// {
-//     // given
-//     // PriceCalculator priceCalculator;
-//     DiscountType discountType = DiscountType::CASH_BACK;
-//     double money = 100.0;
+    // when
+    double cash = priceCalculator->AcceptCash(discountType, money);
 
-//     // when
-//     double cash = priceCalculator.AcceptCash(discountType, money);
+    // then
+    EXPECT_DOUBLE_EQ(90.0, cash);
+}
 
-//     // then
-//     EXPECT_DOUBLE_EQ(80.0, cash);
-// }
+TEST(PriceCalculator, should_return_80_when_given_cash_back_and_price_100)
+{
+    // given
+    // PriceCalculator priceCalculator;
+    PriceCalculator* priceCalculator = PriceCalculator::getInstance();
+
+    DiscountType discountType = DiscountType::CASH_BACK;
+    double money = 100.0;
+
+    // when
+    double cash = priceCalculator->AcceptCash(discountType, money);
+
+    // then
+    EXPECT_DOUBLE_EQ(80.0, cash);
+}
