@@ -1,12 +1,28 @@
 #pragma once
 #include <cmath>
+
 namespace PriceCalc
 {
 class PriceCalculator final
 {
 public:
     double AcceptCash(const DiscountType discountType, const double money) const noexcept;
+    static PriceCalculator* getInstance()
+    {
+        if(instance == nullptr)
+        {
+            instance = new PriceCalculator();
+        }
+        return instance;
+    }
 private:
+    // 静态成员变量，存储单例实例
+    static PriceCalculator* instance;
+    
+    // 将构造函数和析构函数设为私有，防止外部创建和销毁对象
+    PriceCalculator(){}
+    ~PriceCalculator(){}
+    
     class Discount
     {
     public:

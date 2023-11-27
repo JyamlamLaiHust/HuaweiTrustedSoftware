@@ -6,6 +6,8 @@
 
 namespace PriceCalc
 {
+PriceCalculator* PriceCalculator::instance = nullptr;
+
 double PriceCalculator::AcceptCash(const DiscountType discountType, const double money) const noexcept
 {
     std::unordered_map <DiscountType, std::unique_ptr<Discount>> discountMap;
