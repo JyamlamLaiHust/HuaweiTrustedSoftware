@@ -1,4 +1,7 @@
 #pragma once
+
+#include <unordered_map>
+#include <functional
 #include <cmath>
 
 enum class DiscountType {
@@ -8,8 +11,3 @@ enum class DiscountType {
     CASH_PERCENTOFF_30,
     CASH_BACK,
 };
-
-namespace PriceCalc
-{
-
-};  // namespace PriceCalc
